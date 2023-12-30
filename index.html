@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="p5.min.js"></script>
+    <script src="sketch.js" type="text/javascript"></script>
+</head>
+<body>
+<p>
+    Payoffs:<br>
+    Cooperate/Cooperate: <input type="text" id="tradeoff_R" value="3">
+    Defect/Defect: <input type="text" id="tradeoff_P" value="0">
+    Defect/Cooperate: <input type="text" id="tradeoff_T" value="5">
+    Cooperate/Defect: <input type="text" id="tradeoff_S" value="-1"><br>
+    <br><br>
+    # agents: <input id="num_agents_slider" type="range" min="1" max="200" value="40">
+    <span id="num_agents">40</span><br/>
+    # new agents every generation: <input id="perc_new_agents_slider" type="range" min="1" max="100" value="50">
+    <span id="num_new_agents">20</span><br/>
+    # generations: <input id="num_generations_slider" type="range" min="1" max="200" value="40">
+    <span id="num_generations">40</span><br/>
+    # games per generation: <input id="num_games_slider" type="range" min="1" max="200" value="40">
+    <span id="num_games">40</span><br/><br/>
+    <button id="run">Run Iterated Prisoner's Dilemma</button>
+    <br/> Top 3 ages in current generation: <br><span id="top_agents">
+
+</p>
+</body>
+</html>

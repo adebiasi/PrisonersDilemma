@@ -124,7 +124,7 @@ class Agent {
     }
 
     toString() {
-        return `Agent(C after D: ${this.loyal_after_defect}, C after C: ${this.loyal_after_loyal}, start with C: ${this.loyal_after_none}, score: ${this.wealth})`;
+        return `Agent(prob C after D: ${this.loyal_after_defect}, prob C after C: ${this.loyal_after_loyal}, prob start with C: ${this.loyal_after_none}, score: ${this.wealth})`;
     }
 }
 

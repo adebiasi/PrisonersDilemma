@@ -57,6 +57,12 @@ function draw() {
     interact()
 
     let winners = populations.slice(0, populations.length - num_new_agents);
+    winners = winners.map(function (obj) {
+        console.log("obj: "+obj)
+        let mut = obj.mutate();
+        console.log("mut: "+mut)
+        return mut;
+    });
     winners.map(a => a.is_cloned = true);
     let new_populations = Array.from({length: num_new_agents}, () => new Agent(null, null, null, false));
     populations = winners.concat(new_populations);
@@ -80,9 +86,9 @@ class Agent {
         this.is_cloned = is_cloned;
 
         if (defectresp == null || loyalresp == null || loyalnone == null) {
-            this.loyal_after_defect = random(0.0, 1.0).toFixed(2);
-            this.loyal_after_loyal = random(0.0, 1.0).toFixed(2);
-            this.loyal_after_none = random(0.0, 1.0).toFixed(2);
+            this.loyal_after_defect = parseFloat(random(0.0, 1.0).toFixed(2));
+            this.loyal_after_loyal = parseFloat(random(0.0, 1.0).toFixed(2));
+            this.loyal_after_none = parseFloat(random(0.0, 1.0).toFixed(2));
         } else {
             this.loyal_after_defect = constrain(defectresp, 0.01, 0.99);
             this.loyal_after_loyal = constrain(loyalresp, 0.01, 0.99);
@@ -123,6 +129,14 @@ class Agent {
         return new Agent(this.loyal_after_defect, this.loyal_after_loyal, this.loyal_after_none, true);
     }
 
+    mutate() {
+        return new Agent(
+            parseFloat((this.loyal_after_defect + random(-0.02, 0.02)).toFixed(2)),
+            parseFloat((this.loyal_after_loyal + random(-0.02, 0.02)).toFixed(2)),
+            parseFloat((this.loyal_after_none + random(-0.02, 0.02)).toFixed(2)),
+            true);
+    }
+
     toString() {
         return `Agent(prob C after D: ${this.loyal_after_defect}, prob C after C: ${this.loyal_after_loyal}, prob start with C: ${this.loyal_after_none}, score: ${this.wealth})`;
     }
@@ -152,7 +166,7 @@ function interact() {
 
 
     populations.sort((a, b) => b.wealth - a.wealth);
-    select('#top_agents').html(get_rect_text(populations[0])+populations[0]+"<br><br>"+get_rect_text(populations[1])+populations[1]+"<br><br>"+get_rect_text(populations[2])+populations[2])
+    select('#top_agents').html(get_rect_text(populations[0]) + populations[0] + "<br><br>" + get_rect_text(populations[1]) + populations[1] + "<br><br>" + get_rect_text(populations[2]) + populations[2])
 
     let h_step = height / total_interactions;
     let w_step = width / populations.length;
@@ -172,8 +186,8 @@ function interact() {
 
 }
 
-function get_rect_text(curr_agent){
-    let cols = "rgb("+(255 * curr_agent.loyal_after_defect)+","+ (255 * curr_agent.loyal_after_loyal)+"," +(255 * curr_agent.loyal_after_none)+")";
-    let rect_1 = "<div style=\"width: 60px; height: 20px; background-color: "+cols+";\"></div>"
+function get_rect_text(curr_agent) {
+    let cols = "rgb(" + (255 * curr_agent.loyal_after_defect) + "," + (255 * curr_agent.loyal_after_loyal) + "," + (255 * curr_agent.loyal_after_none) + ")";
+    let rect_1 = "<div style=\"width: 60px; height: 20px; background-color: " + cols + ";\"></div>"
     return rect_1
 }

@@ -145,22 +145,24 @@ class Agent {
 function interact() {
 
     // for (let iteration = 0; iteration < total_interactions; iteration++) {
-
+    for (let i = 0; i < populations.length; i++) {
+        populations[i].wealth = 0;
+    }
     for (let one_index = 0; one_index < populations.length; one_index++) {
-        let one = populations[one_index].clone();
-        populations[one_index].wealth = 0;
-        for (let other_index = 0; other_index < populations.length; other_index++) {
-            let other = populations[other_index].clone();
+        let one = populations[one_index];
+        for (let other_index = 0; other_index < one_index+1; other_index++) {
+            let other = populations[other_index];
             let prev_responses_one = [];
             let prev_responses_other = [];
             for (let pair_interaction = 0; pair_interaction < pair_interactions; pair_interaction++) {
                 [prev_responses_one, prev_responses_other] = [prev_responses_one.concat(one.play(prev_responses_other)), prev_responses_other.concat(other.play(prev_responses_one))];
                 // console.log(prev_responses_one)
                 one.wealth += payoff[`${prev_responses_one[prev_responses_one.length - 1]},${prev_responses_other[prev_responses_other.length - 1]}`];
+                other.wealth += payoff[`${prev_responses_other[prev_responses_other.length - 1]},${prev_responses_one[prev_responses_one.length - 1]}`];
                 // other.wealth += payoff[`${response_other},${response_one}`];
             }
         }
-        populations[one_index].wealth = one.wealth;
+        // populations[one_index].wealth = one.wealth;
 
     }
 

@@ -18,4 +18,8 @@ The winners are not easy to predict.
 
 In many situations the winning agents are the ones that always defect (black color) or that are loyal only at the beginning (blue color).
 
+![](https://github.com/adebiasi/PrisonersDilemma/blob/main/196-55.png)
+
 However, when the number on new random agents per generation is around the 10% of the total agents, [titfortat](https://en.wikipedia.org/wiki/Tit_for_tat) agents wins, i.e. loyal after loyal and loyal at the beginning (sky blue color)!
+
+![](https://github.com/adebiasi/PrisonersDilemma/blob/main/196-16.png)

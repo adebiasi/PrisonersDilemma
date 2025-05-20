@@ -1,25 +1,29 @@
 # PrisonersDilemma
 
 ## Introduction
-Inspired by https://github.com/pboothe/titfortat/blob/master/response.py.
 
-In the visualization, each row is an iteration from top to bottom. Each rectangle represents an agent. They are ordered accordingly to their scores, from left to right. The color of the agent encode three information: 
-- red -> loyal_after_defect probability
-- green -> loyal_after_loyal probability
-- blue -> loyal at the beginning probability
+Inspired by [this script](https://github.com/pboothe/titfortat/blob/master/response.py), this project explores the Iterated Prisoner's Dilemma through a dynamic, evolving simulation.
 
-## Try it
+In the visualization, each row represents an iteration (from top to bottom), and each rectangle represents an agent. Agents are sorted from left to right by their score. The color of each rectangle encodes three key traits:
+- **Red** → probability of cooperating after the opponent defects
+- **Green** → probability of cooperating after the opponent cooperates
+- **Blue** → probability of cooperating at the beginning
 
-You can try the iterative prisoner's dilemma here: https://adebiasi.github.io/PrisonersDilemma/
+## Try It
+
+You can try the Iterated Prisoner's Dilemma simulation here:  
+👉 [https://adebiasi.github.io/PrisonersDilemma/](https://adebiasi.github.io/PrisonersDilemma/)
 
 ## Observations
 
-The winners are not easy to predict.
+The winners of the simulation are not always easy to predict.
 
-In many situations the winning agents are the ones that always defect (black color) or that are loyal only at the beginning (blue color).
+In many cases, the dominant agents are either:
+- those that **always defect** (appearing black), or
+- those that **cooperate only at the beginning** (appearing blue).
 
 ![](https://github.com/adebiasi/PrisonersDilemma/blob/main/196-55.png)
 
-However, when the number on new random agents per generation is around the 10% of the total agents, [titfortat](https://en.wikipedia.org/wiki/Tit_for_tat) agents wins, i.e. loyal after loyal and loyal at the beginning (sky blue color)!
+However, when around **10%** of the agents in each generation are replaced with random new agents, **Tit-for-Tat** strategies tend to win. These agents start by cooperating and then mirror the opponent’s previous action—cooperating after cooperation but not after defection. They typically appear **sky blue** in the visualization.
 
 ![](https://github.com/adebiasi/PrisonersDilemma/blob/main/196-16.png)
